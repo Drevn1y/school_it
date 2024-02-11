@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <title>Курсы</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"><b>SkillSync</b></a>
+    <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="courses">Курсы</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="category">Категории</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="profile">Профиль</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Прочее</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="information">Информация об учебном центре</a></li>
+            <li><a class="dropdown-item" href="ratings">Учителя</a></li>
+            <li><a class="dropdown-item" href="contacts">Контакты</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex" role="search" action="search" method="POST">
+        {% csrf_token %}
+        <input class="form-control me-2" type="text" placeholder="Поиск" aria-label="Search" name="search_courses">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<br>
+<br>
+<br>
+
+
+        <section>
+				<div class="col-sm-9 padding-right">
+					<div class="features_items"><!--features_items-->
+						<h2 class="title text-center">Курсы</h2>
+						{% for i in courses %}
+							<div class="col-sm-4">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<a href="courses/{{ i.id }}"><img src="{{ i.photo }}"></a>
+											<h2>${{ i.price }}</h2>
+											<p>{{ i.name }}</p>
+											<a href="courses/{{ i.id }}" class="btn btn-default add-to-cart">По подробнее</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div><!--features_items-->
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
